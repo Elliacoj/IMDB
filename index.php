@@ -10,7 +10,13 @@
 <body>
     <div id="container">
         <header>
-
+            <img src="./img/logoIMDB.jpg" alt="IMDB">
+            <div id="menu"></div>
+            <div id="searchBar"></div>
+            <div id="imdbPro"></div>
+            <div id="slashheader"></div>
+            <div id="watchList"></div>
+            <div id="sign"></div>
         </header>
 
         <section></section>
