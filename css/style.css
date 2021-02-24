@@ -1,0 +1,198 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+HTML {
+    font-size: 62.5%;
+}
+
+body {
+    background-color: #000000;
+    width: 100%;
+    font-size: 2rem;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #121212;
+    width: 100%;
+    height: 60px;
+}
+
+#header, #menu, #searchBar, #searchIMDB, #imdbPro, #watchList, #sign {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+#header {
+    width: 1250px;
+    height: 100%;
+    margin: 0 auto;
+    align-items: center;
+}
+
+#logo {
+    width: 5%;
+    height: 100%;
+    background-image: url("../img/logoIMDB.png");
+    background-size: 100%;
+    background-position: left;
+    background-repeat: no-repeat;
+}
+#menu, #imdbPro, #watchList, #sign {
+    width: 8%;
+    height: 70%;
+    border-radius: 10px;
+    color: darkgray;
+    margin-left: 0.5%;
+}
+
+i {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    padding-top: 12%;
+    padding-left: 10%;
+}
+
+#menu p {
+    height: 100%;
+    width: 45%;
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+
+}
+
+#menu:hover, #imdbPro:hover, #watchList:hover, #sign:hover {
+    background-color: #4b5051;
+    color: white;
+}
+
+#searchBar {
+    margin-left: 0.5%;
+    width: 60%;
+    height: 60%;
+}
+
+#searchScroll {
+    appearance: none;
+    width: content-box;
+    border: none;
+    height: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+    z-index: 1;
+    border-radius: 10px 0 0 10px;
+    cursor: pointer;
+    background-color: transparent;
+    font-weight: bold;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+:root {
+    --select-border: #777;
+    --select-focus: #797979;
+    --select-arrow: var(--select-border);
+}
+
+.select {
+    border-radius: 10px 0 0 10px;
+    font-size: 1.25rem;
+    line-height: 1.1;
+    display: grid;
+    grid-template-areas: "select";
+    align-items: center;
+    background-color: #fff;
+}
+
+.select::after {
+    content: "";
+    width: 0.8em;
+    height: 0.5em;
+    background-color: var(--select-arrow);
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    justify-self: end;
+    margin-right: 5%;
+}
+
+select, .select:after {
+    grid-area: select;
+}
+
+option {
+    background-color: #121212;
+    font-size: 2rem;
+    border-color: #121212;
+    border-radius: 5px;
+    color: white;
+}
+
+#searchIMDB {
+    width: 80%;
+    height: 100%;
+}
+
+#searchIMDB input {
+    height: 100%;
+    width: 94%;
+    border: none;
+    border-left: 1px solid darkgray;
+    padding: 0 2% 0 2%;
+}
+
+#wen {
+    width: 6%;
+    height: 100%;
+    background-color: white;
+    border-radius: 0 10px 10px 0;
+}
+
+#wen i {
+    width: 100%;
+    height: 100%;
+    margin-top: 10%;
+    margin-left: 10%;
+}
+
+#sign, #watchList, #imdbPro {
+    font-size: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+#imdbPro {
+    width: 6%;
+    padding: 0 4% 0 4%;
+}
+
+#slashheader {
+    height: 45%;
+    border: 1px solid #777777;
+    margin-left: 0.5%;
+}
+
+#watchList {
+    width: 9%;
+    padding-right: 1%;
+}
+
+#watchList i {
+    margin-top: 3%;
+}
+
+#sign {
+    width: 6%;
+}
+
+section {
+    width: 1250%;
+    margin: 0 auto;
+}
