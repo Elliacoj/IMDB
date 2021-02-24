@@ -1,49 +1,53 @@
+export {Carrousel};
 
-
-export let Carrousel = function(array, name, add, width, height, numberImage, button = true, direct = "left") {
+/**
+ *
+ * @param array
+ * @param name
+ * @param add
+ * @param width
+ * @param height
+ * @param numberImage
+ * @param button
+ * @param direct
+ * @constructor
+ */
+let Carrousel = function(array, name, add, width, height, numberImage, button = true, direct = "left") {
     this.array = array;
     this.name = name;
     this.number = numberImage;
+    this.direct = direct;
 
+    /**
+     * Creat a carrousel design
+     */
     this.createCarrousel = function() {
         let container = document.createElement("div");
-        container.id = this.name;
-        container.id = this.name;
-        add.append(container);
+        let nameButton = "button" + this.name;
 
         for(let x = 0; x <  this.number + 4; x++) {
             let div = document.createElement("div");
             container.append(div);
-        }
 
-        for(let x = 0; x < this.number + 4; x++) {
             if(x < this.number + 2) {
-                container.children[x].className = this.name;
+                div.className = this.name;
             }
             else {
-                container.children[x].className = "button" + this.name;
+                div.className = nameButton;
             }
         }
 
-        let nameButton = "button" + this.name;
         let divChild = document.getElementsByClassName(this.name);
         let divButton = document.getElementsByClassName(nameButton);
-        container.style.width = width;
-        container.style.height = height;
-        container.style.overflow = "hidden";
-        container.style.position = "relative";
-        container.style.backgroundRepeat = "no-repeat";
-        container.style.backgroundColor = "white";
-        container.style.backgroundSize = "cover";
-        container.style.backgroundPosition = "center";
+        let addCss = "background-repeat: no-repeat; background-size: cover; background-position: center;";
+
+        container.id = this.name;
+        container.style.cssText = "width: " + width + "; height:" + height + "; overflow: hidden; position: relative; background-color: white;" + `${addCss}`;
+        add.append(container);
 
         if(direct === "left" || direct === "right") {
             for(let x = 0; x < this.number + 2; x++) {
-                divChild[x].style.position = "absolute";
-                divChild[x].style.backgroundPosition = "center";
-                divChild[x].style.backgroundRepeat = "no-repeat";
-                divChild[x].style.backgroundSize = "cover";
-                divChild[x].style.height = 100 + "%";
+                divChild[x].style.cssText = 'position: absolute;height: 100%;'  + `${addCss}`;
 
                 if(x === 0 || x === this.number + 1) {
                     divChild[x].style.width = (100 / this.number) + "%";
@@ -59,11 +63,7 @@ export let Carrousel = function(array, name, add, width, height, numberImage, bu
         }
         else {
             for(let x = 0; x < this.number + 2; x++) {
-                divChild[x].style.position = "absolute";
-                divChild[x].style.backgroundPosition = "center";
-                divChild[x].style.backgroundRepeat = "no-repeat";
-                divChild[x].style.backgroundSize = "cover";
-                divChild[x].style.width = 100 + "%";
+                divChild[x].style.cssText = `position: absolute; width: 100%; ${addCss}`;
 
                 if(x === 0 || x === this.number + 1) {
                     divChild[x].style.height = (100 / this.number) + "%";
@@ -79,33 +79,17 @@ export let Carrousel = function(array, name, add, width, height, numberImage, bu
         }
 
         for(let x = 0; x < 2; x++) {
-            divButton[x].style.position = "absolute";
-            divButton[x].style.width = "15%";
-            divButton[x].style.height = "15%";
-            divButton[x].style.backgroundColor = "black";
-            divButton[x].style.zIndex = "1";
-            divButton[x].style.opacity = "0.5";
-
+            divButton[x].style.cssText = "position: absolute; width: 15%; height: 15%; background-color: black; z-index: 1; opacity: 0.5;";
         }
 
         if(direct === "left" || direct === "right") {
-            divButton[0].style.left = "2%";
-            divButton[0].style.clipPath = "polygon(100% 100%, 100% 0, 0 50%)";
-            divButton[0].style.top = "42.5%";
-            divButton[1].style.right = "0";
-            divButton[1].style.clipPath = "polygon(0 0, 0 100%, 100% 50%)";
-            divButton[1].style.top = "42.5%";
+            divButton[0].style.cssText = divButton[0].style.cssText + "left: 2%; clip-path: polygon(100% 100%, 100% 0, 0 50%); top: 42.5%;";
+            divButton[1].style.cssText = divButton[1].style.cssText + "right: 0; clip-path: polygon(0 0, 0 100%, 100% 50%); top: 42.5%;";
         }
         else {
-            divButton[0].style.up = "2%";
-            divButton[0].style.clipPath = "polygon(50% 0, 0 100%, 100% 100%)";
-            divButton[0].style.left = "42.5%";
-            divButton[1].style.bottom = "0";
-            divButton[1].style.clipPath = "polygon(100% 0, 0 0, 50% 100%)";
-            divButton[1].style.left = "42.5%";
+            divButton[0].style.cssText = divButton[0].style.cssText + "up: 2%; clip-path: polygon(50% 0, 0 100%, 100% 100%); left: 42.5%;";
+            divButton[1].style.cssText = divButton[1].style.cssText + "bottom: 0; clip-path: polygon(100% 0, 0 0, 50% 100%); left: 42.5%;";
         }
-
-
 
         let y = 0
         for(let x = 0; x < this.number + 2; x++) {
@@ -119,21 +103,23 @@ export let Carrousel = function(array, name, add, width, height, numberImage, bu
                 y++;
             }
         }
+
         if(button === false) {
             divButton[0].style.display = "none";
             divButton[1].style.display = "none";
         }
     }
 
+    /**
+     * Start carrousel animated
+     */
     this.start = function () {
-        carousel();
-
-        let images = document.getElementsByClassName("" + name + "");
+        let images = document.getElementsByClassName("" + this.name + "");
 
         /**
          * Begin carrousel
          */
-        function carousel() {
+        const carousel = () =>{
             let time = setTimeout(function () {
                 if(direct === "left" || direct === "up") {
                     direction("-100%", "left", 2);
@@ -144,7 +130,7 @@ export let Carrousel = function(array, name, add, width, height, numberImage, bu
                 removeListener(leftGo, rightGo);
             }, 3000);
 
-            let nameButton = "button" + name;
+            let nameButton = "button" + this.name;
             document.getElementsByClassName(nameButton)[0].addEventListener("click", leftGo);
             document.getElementsByClassName(nameButton)[1].addEventListener("click", rightGo);
 
@@ -171,6 +157,8 @@ export let Carrousel = function(array, name, add, width, height, numberImage, bu
             }
         }
 
+        carousel();
+
         /**
          * Remove listener of button left and right
          * @param leftGo
@@ -188,9 +176,9 @@ export let Carrousel = function(array, name, add, width, height, numberImage, bu
          * @param dir
          * @param number
          */
-        function direction(direction, dir, number) {
-            if(direct === "left" || direct === "right") {
-                for(let x = 0; x < numberImage + 2; x++) {
+        const direction = (direction, dir, number) => {
+            if(this.direct === "left" || this.direct === "right") {
+                for(let x = 0; x < this.number + 2; x++) {
                     images[x].animate([
                         { transform: 'translateX(' + direction + ')' }
                     ], {
@@ -199,7 +187,7 @@ export let Carrousel = function(array, name, add, width, height, numberImage, bu
                 }
             }
             else {
-                for(let x = 0; x < numberImage + 2; x++) {
+                for(let x = 0; x < this.number + 2; x++) {
                     images[x].animate([
                         { transform: 'translateY(' + direction + ')' }
                     ], {
@@ -259,8 +247,7 @@ export let Carrousel = function(array, name, add, width, height, numberImage, bu
                 for(let image of images) {
                     image.style.display = "initial";
                 }
-            }, 200);
+            }, 5);
         }
     }
 }
-
