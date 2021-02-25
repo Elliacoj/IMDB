@@ -22,7 +22,7 @@ let Carrousel = function(array, name, add, width, height, sizeImage ,numberImage
     /**
      * Creat a carrousel design
      */
-    this.createCarrousel = function(widthSize = 15, heightSize = 15) {
+    this.createCarrousel = function(widthSize = 15, heightSize = 15, margin = 0) {
         let container = document.createElement("div");
         let nameButton = "button" + this.name;
 
@@ -43,18 +43,18 @@ let Carrousel = function(array, name, add, width, height, sizeImage ,numberImage
         let addCss = "background-repeat: no-repeat; background-size: " + sizeImage + "%; background-position: center;";
 
         container.id = this.name;
-        container.style.cssText = "width: " + width + "; height:" + height + "; overflow: hidden; position: relative;" + `${addCss}`;
+        container.style.cssText = "width: " + width + "; height:" + height + "; overflow: hidden; position: relative; display: flex; flex-wrap: no-wrap; justify-contents: space-around;" + `${addCss}`;
         add.append(container);
 
         if(direct === "left" || direct === "right") {
             for(let x = 0; x < this.number + 2; x++) {
-                divChild[x].style.cssText = 'position: absolute;height: 100%;'  + `${addCss}`;
+                divChild[x].style.cssText = 'position: absolute; height: 100%;'  + `${addCss}`;
 
                 if(x === 0 || x === this.number + 1) {
-                    divChild[x].style.width = (100 / this.number) + "%";
+                    divChild[x].style.width = (100 / this.number - margin) + "%";
                 }
                 else {
-                    divChild[x].style.width = (100 / this.number) + "%";
+                    divChild[x].style.width = (100 / this.number - margin) + "%";
                     divChild[x].style.left = ((100 / this.number) * (x - 1)) + "%";
                 }
             }
@@ -67,10 +67,10 @@ let Carrousel = function(array, name, add, width, height, sizeImage ,numberImage
                 divChild[x].style.cssText = `position: absolute; width: 100%; ${addCss}`;
 
                 if(x === 0 || x === this.number + 1) {
-                    divChild[x].style.height = (100 / this.number) + "%";
+                    divChild[x].style.height = (100 / this.number - margin) + "%";
                 }
                 else {
-                    divChild[x].style.height = (100 / this.number) + "%";
+                    divChild[x].style.height = (100 / this.number - margin) + "%";
                     divChild[x].style.top = ((100 / this.number) * (x - 1)) + "%";
                 }
             }
@@ -79,17 +79,27 @@ let Carrousel = function(array, name, add, width, height, sizeImage ,numberImage
             divChild[this.number + 1].style.top = "+100%";
         }
 
-        for(let x = 0; x < 2; x++) {
-            divButton[x].style.cssText = "position: absolute; width: " + widthSize + "%; height: " + heightSize + "%; background-color: white; z-index: 1; opacity: 0.5;";
+        for(let button of divButton) {
+            button.style.cssText = "position: absolute; width: " + widthSize + "%; height: " + heightSize + "%; background-color: red; z-index: 1; opacity: 0.5;";
         }
 
         if(direct === "left" || direct === "right") {
-            divButton[0].style.cssText = divButton[0].style.cssText + "left: 2%; clip-path: polygon(100% 100%, 100% 0, 0 50%); top: 42.5%;";
+            divButton[0].style.cssText = divButton[0].style.cssText + "left: 0; clip-path: polygon(100% 100%, 100% 0, 0 50%); top: 42.5%;";
             divButton[1].style.cssText = divButton[1].style.cssText + "right: 0; clip-path: polygon(0 0, 0 100%, 100% 50%); top: 42.5%;";
         }
         else {
-            divButton[0].style.cssText = divButton[0].style.cssText + "up: 2%; clip-path: polygon(50% 0, 0 100%, 100% 100%); left: 42.5%;";
+            divButton[0].style.cssText = divButton[0].style.cssText + "up: 0; clip-path: polygon(50% 0, 0 100%, 100% 100%); left: 42.5%;";
             divButton[1].style.cssText = divButton[1].style.cssText + "bottom: 0; clip-path: polygon(100% 0, 0 0, 50% 100%); left: 42.5%;";
+        }
+
+        for(let button of divButton) {
+            button.addEventListener("mouseover", function () {
+                button.style.opacity = "1";
+            });
+
+            button.addEventListener("mouseout", function () {
+                button.style.opacity = "0.5";
+            });
         }
 
         let y = 0

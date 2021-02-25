@@ -2,6 +2,7 @@ import {Carrousel} from "./carrousel.js";
 
 let arrayFeature = [];
 let arrayFeatureUp = [];
+let arrayActor= [];
 let xhr = new XMLHttpRequest();
 xhr.open("GET", "./img/film.json");
 xhr.responseType = "json";
@@ -19,12 +20,12 @@ xhr.onload = function() {
         }
         arrayFeatureUp.push(response[0][0][0]["features"][0])
 
-        let carrouselMain = new Carrousel(arrayFeature, "principal", document.getElementById("carrouselLeft"), "100%", "100%", 80, 1, true, "left");
+        let carrouselMain = new Carrousel(arrayFeature, "principal", document.getElementById("carrouselLeft"), "100%", "100%", 100, 1, true, "left");
         carrouselMain.createCarrousel(5, 10);
         carrouselMain.start();
 
         let carrouselMainExt = new Carrousel(arrayFeatureUp, "secondary", document.getElementById("carrouselUp"), "80%", "85%", 40, 3, false, "up");
-        carrouselMainExt.createCarrousel();
+        carrouselMainExt.createCarrousel(15,15, 2);
         carrouselMainExt.start();
 
         document.getElementById("secondary").style.cssText = document.getElementById("secondary").style.cssText + "top: 2%;";
@@ -45,9 +46,28 @@ xhr.onload = function() {
         });
     }
 }
-
 xhr.send();
 
+let xhrActor = new XMLHttpRequest();
+xhrActor.open("GET", "./img/actor.json");
+xhrActor.responseType = "json";
+xhrActor.onload = function() {
+    if(xhrActor.status === 200) {
+        let response = xhrActor.response;
 
+        for(let x = 0; x < 6; x++) {
+            arrayActor.push(response[0][x][0]["features"][0]);
+        }
+    }
 
+    let carrouselActor = new Carrousel(arrayActor, "actor", document.getElementById("actorList"), "100%", "100%", 100, 6, true, "left");
+    carrouselActor.createCarrousel(2, 15, 2);
+    carrouselActor.start();
+
+    let actors = document.getElementsByClassName("actor");
+    for(let actor of actors) {
+        actor.style.cssText = actor.style.cssText +"border-radius: 50%;";
+    }
+}
+xhrActor.send();
 
