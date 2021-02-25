@@ -134,6 +134,15 @@ let Carrousel = function(array, name, add, width, height, numberImage, button = 
             document.getElementsByClassName(nameButton)[0].addEventListener("click", leftGo);
             document.getElementsByClassName(nameButton)[1].addEventListener("click", rightGo);
 
+            this.moveManual = function(directionMove) {
+                if(directionMove === "left" || directionMove === "up") {
+                    leftGo();
+                }
+                else {
+                    rightGo();
+                }
+            }
+
             /**
              * Scroll left
              */

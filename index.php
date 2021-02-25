@@ -40,17 +40,19 @@
 
                 <div id="imdbPro">IMDbPro</div>
                 <div id="slashheader"></div>
+
                 <div id="watchList">
                     <i class="fas fa-bookmark"></i>
                     <p>Watchliste</p>
                 </div>
+
                 <div id="sign">Sign in</div>
             </div>
         </header>
 
         <section id="partOne">
             <div id="carrouselLeft"></div>
-            <div id="carrouselUp"></div>
+            <div id="carrouselUp"><span>Up next</span></div>
         </section>
         <section></section>
         <section></section>
@@ -65,7 +67,38 @@
         <section></section>
         <section></section>
 
-        <footer></footer>
+        <footer>
+
+            <div id="logoNetworks">
+                <div><i class="fab fa-facebook-square"></i></div>
+                <div><i class="fab fa-instagram-square"></i></div>
+                <div><i class="fab fa-twitch"></i></div>
+                <div><i class="fab fa-twitter"></i></div>
+                <div><i class="fab fa-youtube"></i></div>
+            </div>
+
+            <div id="lineLienOne">
+                <div>Get the IMDb App</div>
+                <div>Help</div>
+                <div>Site Index</div>
+                <div>IMDbPro</div>
+                <div>Box Office Mojo</div>
+                <div>IMDb Developer</div>
+            </div>
+
+            <div id="lineLienTwo">
+                <div>Press Room</div>
+                <div>Advertising</div>
+                <div>Jobs</div>
+                <div>Conditions of Use</div>
+                <div>Privacy Policy</div>
+                <div>Interest-Based Ads</div>
+            </div>
+
+            <div id="amazon">an amazon company</div>
+
+            <div id="years">© 1990-2021 by IMDb.com, Inc.</div>
+        </footer>
     </div>
 
     <script src="./js/script.js" type="module"></script>
