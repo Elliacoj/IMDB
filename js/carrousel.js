@@ -7,12 +7,13 @@ export {Carrousel};
  * @param add
  * @param width
  * @param height
+ * @param sizeImage
  * @param numberImage
  * @param button
  * @param direct
  * @constructor
  */
-let Carrousel = function(array, name, add, width, height, numberImage, button = true, direct = "left") {
+let Carrousel = function(array, name, add, width, height, sizeImage ,numberImage, button = true, direct = "left") {
     this.array = array;
     this.name = name;
     this.number = numberImage;
@@ -21,7 +22,7 @@ let Carrousel = function(array, name, add, width, height, numberImage, button = 
     /**
      * Creat a carrousel design
      */
-    this.createCarrousel = function() {
+    this.createCarrousel = function(widthSize = 15, heightSize = 15) {
         let container = document.createElement("div");
         let nameButton = "button" + this.name;
 
@@ -39,10 +40,10 @@ let Carrousel = function(array, name, add, width, height, numberImage, button = 
 
         let divChild = document.getElementsByClassName(this.name);
         let divButton = document.getElementsByClassName(nameButton);
-        let addCss = "background-repeat: no-repeat; background-size: cover; background-position: center;";
+        let addCss = "background-repeat: no-repeat; background-size: " + sizeImage + "%; background-position: center;";
 
         container.id = this.name;
-        container.style.cssText = "width: " + width + "; height:" + height + "; overflow: hidden; position: relative; background-color: white;" + `${addCss}`;
+        container.style.cssText = "width: " + width + "; height:" + height + "; overflow: hidden; position: relative;" + `${addCss}`;
         add.append(container);
 
         if(direct === "left" || direct === "right") {
@@ -79,7 +80,7 @@ let Carrousel = function(array, name, add, width, height, numberImage, button = 
         }
 
         for(let x = 0; x < 2; x++) {
-            divButton[x].style.cssText = "position: absolute; width: 15%; height: 15%; background-color: black; z-index: 1; opacity: 0.5;";
+            divButton[x].style.cssText = "position: absolute; width: " + widthSize + "%; height: " + heightSize + "%; background-color: white; z-index: 1; opacity: 0.5;";
         }
 
         if(direct === "left" || direct === "right") {

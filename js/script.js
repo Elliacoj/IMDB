@@ -1,28 +1,54 @@
 import {Carrousel} from "./carrousel.js";
 
-let array = ["./img/logoIMDB.png"];
+let arrayFeature = [];
+let arrayFeatureUp = [];
+let xhr = new XMLHttpRequest();
+xhr.open("GET", "./img/film.json");
+xhr.responseType = "json";
 
-let carrouselMain = new Carrousel(array, "principal", document.getElementById("carrouselLeft"), "100%", "100%", 1, true, "left");
-carrouselMain.createCarrousel();
-carrouselMain.start();
+xhr.onload = function() {
+    if(xhr.status === 200){
+        let response = xhr.response;
+        for(let x = 1; x < 7; x++) {
+            arrayFeature.push(response[0][x][0]["feature"]);
+            console.log(arrayFeature.length);
+        }
 
-let carrouselMainExt = new Carrousel(array, "secondary", document.getElementById("carrouselUp"), "100%", "85%", 3, false, "up");
-carrouselMainExt.createCarrousel();
-carrouselMainExt.start();
+        for(let x = 2; x < 7; x++) {
+            arrayFeatureUp.push(response[0][x][0]["feature"]);
+            console.log(arrayFeature.length);
+        }
+        arrayFeatureUp.push(response[0][1][0]["feature"])
 
-document.getElementById("secondary").style.cssText = document.getElementById("secondary").style.cssText + "top: 2%;";
+        let carrouselMain = new Carrousel(arrayFeature, "principal", document.getElementById("carrouselLeft"), "100%", "100%", 40  ,1, true, "left");
+        carrouselMain.createCarrousel(5, 10);
+        carrouselMain.start();
 
-let div = document.createElement("span");
-document.getElementById("carrouselUp").appendChild(div);
-div.innerHTML = "Browse trailers";
-div.style.cssText = "position: absolute; bottom: 0%; margin-bottom: 0; color: white;";
+        let carrouselMainExt = new Carrousel(arrayFeatureUp, "secondary", document.getElementById("carrouselUp"), "80%", "85%", 40 ,3, false, "up");
+        carrouselMainExt.createCarrousel();
+        carrouselMainExt.start();
 
-let buttonPrincipal = document.getElementsByClassName("buttonprincipal")
+        document.getElementById("secondary").style.cssText = document.getElementById("secondary").style.cssText + "top: 2%;";
 
-buttonPrincipal[0].addEventListener("click", function () {
-    carrouselMainExt.moveManual("left");
-})
+        let div = document.createElement("span");
+        document.getElementById("carrouselUp").appendChild(div);
+        div.innerHTML = "Browse trailers";
+        div.style.cssText = "position: absolute; bottom: 0%; margin-bottom: 0; color: white;";
 
-buttonPrincipal[1].addEventListener("click", function () {
-    carrouselMainExt.moveManual("right");
-})
+        let buttonPrincipal = document.getElementsByClassName("buttonprincipal")
+
+        buttonPrincipal[0].addEventListener("click", function () {
+            carrouselMainExt.moveManual("left");
+        })
+
+        buttonPrincipal[1].addEventListener("click", function () {
+            carrouselMainExt.moveManual("right");
+        });
+    }
+}
+
+xhr.send();
+
+
+
+
