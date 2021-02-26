@@ -59,6 +59,36 @@
           "http://t1.gstatic.com/images?q=tbn:ANd9GcSgE6NBoM-i76roAcsy3WRJbN9iI_BXBsxWRquhbFfgXCoSSmqHUySrI6jM8pMh"
         ]
       }
+    ],
+    "6": [
+      {
+        "nom": "Evans",
+        "prenom": "Chris",
+        "age": "39 ans",
+        "features": [
+          "http://t0.gstatic.com/images?q=tbn:ANd9GcQkZr_k5_Fc8VufttuE93VyHO_ZbC4T3x7aV9sDp82FuJho_7SPUABNPHu4HhvZ"
+        ]
+      }
+    ],
+    "7": [
+      {
+        "nom": "Mackie",
+        "prenom": "Anthony",
+        "age": "42 ans",
+        "features": [
+          "http://t3.gstatic.com/images?q=tbn:ANd9GcTCVVy1X1N7CV8j0c3nXIY0v_0uHWppwNYi-kQAoREn9OkL3cOoXyf5vvfiHxfs"
+        ]
+      }
+    ],
+    "8": [
+      {
+        "nom": "Stan",
+        "prenom": "Sebastian",
+        "age": "38 ans",
+        "features": [
+          "http://t2.gstatic.com/images?q=tbn:ANd9GcQrHZKZsC8uLxqolycpMtEzHicFqX_YErLF7ggTPAVj9L3rLdaPo9eqXzhDBl5z"
+        ]
+      }
     ]
   }
 ]

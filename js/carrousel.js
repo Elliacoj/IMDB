@@ -103,7 +103,8 @@ let Carrousel = function(array, name, add, width, height, sizeImage ,numberImage
         }
 
         let y = 0
-        for(let x = 0; x < this.number + 2; x++) {
+        divChild[0].style.backgroundImage = "url('" + this.array[this.array.length - 1] + "')";
+        for(let x = 1; x < this.number + 2; x++) {
             if(y === (array.length)) {
                 y = 0;
                 divChild[x].style.backgroundImage = "url('" + this.array[y] + "')";
@@ -124,9 +125,9 @@ let Carrousel = function(array, name, add, width, height, sizeImage ,numberImage
     /**
      * Start carrousel animated
      */
-    this.start = function () {
+    this.start = function (moveAuto = true) {
         let images = document.getElementsByClassName("" + this.name + "");
-
+        let divButton = document.getElementsByClassName("button" + this.name + "");
         /**
          * Begin carrousel
          */
@@ -141,9 +142,27 @@ let Carrousel = function(array, name, add, width, height, sizeImage ,numberImage
                 removeListener(leftGo, rightGo);
             }, 3000);
 
+            if(moveAuto === false) {
+                clearTimeout(time);
+                if(images[1].style.backgroundImage === 'url("' + array[0] + '")') {
+                    divButton[0].style.display = "none";
+
+                }
+                else {
+                    divButton[0].style.display = "initial";
+                }
+
+                if(images[this.number].style.backgroundImage === 'url("' + array[array.length - 1] + '")') {
+                    divButton[1].style.display = "none";
+                }
+                else {
+                    divButton[1].style.display = "initial";
+                }
+            }
+
             let nameButton = "button" + this.name;
-            document.getElementsByClassName(nameButton)[0].addEventListener("click", leftGo);
-            document.getElementsByClassName(nameButton)[1].addEventListener("click", rightGo);
+            document.getElementsByClassName(nameButton)[0].addEventListener("click", rightGo);
+            document.getElementsByClassName(nameButton)[1].addEventListener("click", leftGo);
 
             this.moveManual = function(directionMove) {
                 if(directionMove === "left" || directionMove === "up") {
@@ -186,8 +205,8 @@ let Carrousel = function(array, name, add, width, height, sizeImage ,numberImage
          */
         function removeListener(leftGo, rightGo) {
             let nameButton = "button" + name;
-            document.getElementsByClassName(nameButton)[0].removeEventListener("click", leftGo);
-            document.getElementsByClassName(nameButton)[1].removeEventListener("click", rightGo);
+            document.getElementsByClassName(nameButton)[0].removeEventListener("click", rightGo);
+            document.getElementsByClassName(nameButton)[1].removeEventListener("click", leftGo);
         }
 
         /**

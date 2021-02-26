@@ -11,11 +11,11 @@ xhr.onload = function() {
     if(xhr.status === 200){
         let response = xhr.response;
 
-        for(let x = 0; x < 6; x++) {
+        for(let x = 0; x < 9; x++) {
             arrayFeature.push(response[0][x][0]["features"][1]);
         }
 
-        for(let x = 1; x < 6; x++) {
+        for(let x = 1; x < 9; x++) {
             arrayFeatureUp.push(response[0][x][0]["features"][0]);
         }
         arrayFeatureUp.push(response[0][0][0]["features"][0])
@@ -38,12 +38,16 @@ xhr.onload = function() {
         let buttonPrincipal = document.getElementsByClassName("buttonprincipal")
 
         buttonPrincipal[0].addEventListener("click", function () {
-            carrouselMainExt.moveManual("left");
+            carrouselMainExt.moveManual("right");
         })
 
         buttonPrincipal[1].addEventListener("click", function () {
-            carrouselMainExt.moveManual("right");
+            carrouselMainExt.moveManual("left");
         });
+
+        let carrouselFanFavor = new Carrousel(arrayFeatureUp, "fanfavor", document.getElementById("fanFavoritesCarrousel"), "100%", "100%", 100, 6, true, "left");
+        carrouselFanFavor.createCarrousel(2, 10, 2);
+        carrouselFanFavor.start(false);
     }
 }
 xhr.send();
@@ -55,14 +59,14 @@ xhrActor.onload = function() {
     if(xhrActor.status === 200) {
         let response = xhrActor.response;
 
-        for(let x = 0; x < 6; x++) {
+        for(let x = 0; x < 9; x++) {
             arrayActor.push(response[0][x][0]["features"][0]);
         }
     }
 
-    let carrouselActor = new Carrousel(arrayActor, "actor", document.getElementById("actorList"), "100%", "100%", 100, 6, true, "left");
+    let carrouselActor = new Carrousel(arrayActor, "actor", document.getElementById("actorListCarrousel"), "100%", "100%", 100, 6, true, "left");
     carrouselActor.createCarrousel(2, 15, 2);
-    carrouselActor.start();
+    carrouselActor.start(false);
 
     let actors = document.getElementsByClassName("actor");
     for(let actor of actors) {

@@ -54,16 +54,26 @@
             <div id="carrouselLeft"></div>
             <div id="carrouselUp"><span>Up next</span></div>
         </section>
+
+        <section></section>
+        <section></section>
+
+        <section id="fanFavorites">
+            <p>Fan Favorites</p>
+            <p>This week's top TV and movies</p>
+            <div id="fanFavoritesCarrousel"></div>
+        </section>
+
         <section></section>
         <section></section>
         <section></section>
         <section></section>
         <section></section>
         <section></section>
-        <section></section>
-        <section></section>
-        <section></section>
-        <section id="actorList"></section>
+        <section id="actorList">
+            <p>List of actors</p>
+            <div id="actorListCarrousel"></div>
+        </section>
         <section></section>
         <section></section>
 

@@ -275,6 +275,29 @@ footer {
 }
 
 #actorList {
-    height: 200px;
     margin-top: 2%;
 }
+
+#actorListCarrousel {
+    height: 200px;
+}
+
+#fanFavorites {
+    margin-top: 2%;
+}
+
+#fanFavorites p, #actorList p {
+    color: white;
+    margin-bottom: 1%;
+}
+
+#fanFavorites p:nth-child(2) {
+    color: darkgrey;
+    font-size: 1.8rem;
+}
+
+#fanFavoritesCarrousel {
+    height: 250px;
+    margin-top: 2%;
+}
+
