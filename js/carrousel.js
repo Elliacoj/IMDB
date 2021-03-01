@@ -26,11 +26,11 @@ let Carrousel = function(array, name, add, width, height, sizeImage ,numberImage
         let container = document.createElement("div");
         let nameButton = "button" + this.name;
 
-        for(let x = 0; x <  this.number + 4; x++) {
+        for(let x = 0; x <  (this.number * 2) + 4; x++) {
             let div = document.createElement("div");
             container.append(div);
 
-            if(x < this.number + 2) {
+            if(x < (this.number * 2) + 2) {
                 div.className = this.name;
             }
             else {
@@ -47,7 +47,7 @@ let Carrousel = function(array, name, add, width, height, sizeImage ,numberImage
         add.append(container);
 
         if(direct === "left" || direct === "right") {
-            for(let x = 0; x < this.number + 2; x++) {
+            for(let x = 0; x < (this.number * 2) + 2; x++) {
                 divChild[x].style.cssText = 'position: absolute; height: 100%;'  + `${addCss}`;
 
                 if(x === 0 || x === this.number + 1) {
@@ -58,12 +58,19 @@ let Carrousel = function(array, name, add, width, height, sizeImage ,numberImage
                     divChild[x].style.left = ((100 / this.number) * (x - 1)) + "%";
                 }
             }
+            let y = 0;
+            for(let x = this.number + 2; x < (this.number * 2) + 2;x++) {
+                divChild[x].style.display = "none";
+                divChild[x].style.width = (100 / this.number - margin) + "%";
+                divChild[x].style.left = ((100 / this.number) * (y)) + "%";
+                y++
+            }
 
             divChild[0].style.left = (-(100 / this.number)) + "%";
             divChild[this.number + 1].style.left = "+100%";
         }
         else {
-            for(let x = 0; x < this.number + 2; x++) {
+            for(let x = 0; x < (this.number * 2) + 2; x++) {
                 divChild[x].style.cssText = `position: absolute; width: 100%; ${addCss}`;
 
                 if(x === 0 || x === this.number + 1) {
@@ -73,6 +80,14 @@ let Carrousel = function(array, name, add, width, height, sizeImage ,numberImage
                     divChild[x].style.height = (100 / this.number - margin) + "%";
                     divChild[x].style.top = ((100 / this.number) * (x - 1)) + "%";
                 }
+            }
+
+            let y = 0;
+            for(let x = this.number + 2; x < (this.number * 2) + 2;x++) {
+                divChild[x].style.display = "none";
+                divChild[x].style.height = (100 / this.number - margin) + "%";
+                divChild[x].style.top = ((100 / this.number) * (y)) + "%";
+                y++;
             }
 
             divChild[0].style.top = (-(100 / this.number)) + "%";
@@ -239,7 +254,7 @@ let Carrousel = function(array, name, add, width, height, sizeImage ,numberImage
                 backgroundParent(number);
                 switchImage(dir);
                 carousel();
-            }, 250);
+            }, 240);
         }
 
         /**
@@ -278,15 +293,29 @@ let Carrousel = function(array, name, add, width, height, sizeImage ,numberImage
          * Function for debug image switch
          */
         function backgroundParent() {
-            for(let image of images) {
-                image.style.display = "none";
+            let divCarouss = document.getElementsByClassName(name);
+
+
+            let y = 1;
+            for(let x = numberImage + 2; x < (numberImage * 2) + 2;x++) {
+                divCarouss[x].style.backgroundImage = divCarouss[y].style.backgroundImage;
+                divCarouss[x].style.display = "initial";
+                y++;
+            }
+
+            for(let x = 0; x < numberImage + 2; x++) {
+                divCarouss[x].style.display = "none";
             }
 
             setTimeout(function() {
-                for(let image of images) {
-                    image.style.display = "initial";
+                for(let x = 0; x < numberImage + 2; x++) {
+                    divCarouss[x].style.display = "initial";
                 }
-            }, 5);
+
+                for(let x = numberImage + 2; x < (numberImage * 2) + 2;x++) {
+                    divCarouss[x].style.display = "none";
+                }
+            }, 400);
         }
     }
 }
