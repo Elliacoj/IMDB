@@ -194,7 +194,7 @@ let Carrousel = function(array, name, add, width, height, sizeImage ,numberImage
             function leftGo() {
                 if(getComputedStyle(images[1])["transform"] === ("none")) {
                     clearTimeout(time);
-                    direction("-100%", "left", 2);
+                    direction("-110%", "left", 2);
                     removeListener(leftGo, rightGo);
                 }
             }
@@ -205,7 +205,7 @@ let Carrousel = function(array, name, add, width, height, sizeImage ,numberImage
             function rightGo() {
                 if(getComputedStyle(images[1])["transform"] === ("none")) {
                     clearTimeout(time);
-                    direction("+100%", "right", 0);
+                    direction("+110%", "right", 0);
                     removeListener(leftGo, rightGo);
                 }
             }
@@ -254,7 +254,7 @@ let Carrousel = function(array, name, add, width, height, sizeImage ,numberImage
                 backgroundParent(number);
                 switchImage(dir);
                 carousel();
-            }, 240);
+            }, 220);
         }
 
         /**
@@ -315,7 +315,7 @@ let Carrousel = function(array, name, add, width, height, sizeImage ,numberImage
                 for(let x = numberImage + 2; x < (numberImage * 2) + 2;x++) {
                     divCarouss[x].style.display = "none";
                 }
-            }, 400);
+            }, 50);
         }
     }
 }

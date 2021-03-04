@@ -1,3 +1,6 @@
+<?php
+require_once './Classes/DB.php';
+?>
 <!doctype html>
 <html lang="fr">
 <head>
